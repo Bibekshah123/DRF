@@ -8,13 +8,32 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from api import models
+from rest_framework import generics
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
 
-class SathiViewSet(viewsets.ModelViewSet):
-    queryset = models.Sathi.objects.all()
-    serializer_class = SathiSerializer
 
-# class SathiLisCreateApiView(APIView):
+class SathiListCreateView(generics.ListAPIView, generics.CreateAPIView):
+    queryset = Sathi.objects.all()
+    serializer_class = SathiSerializer
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+class SathiUpdateDeleteView(generics.UpdateAPIView, generics.DestroyAPIView):
+    queryset = Sathi.objects.all()
+    serializer_class = SathiSerializer
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+
+
+# class SathiViewSet(viewsets.ModelViewSet):
+#     queryset = models.Sathi.objects.all()
+#     serializer_class = SathiSerializer
+
+# class SathiListCreateApiView(APIView):
 #     def get(self, request):
 #         sathi = Sathi.objects.all()
 #         serializer = SathiSerializer(sathi, many=True)
