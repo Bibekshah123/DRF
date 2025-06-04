@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from .serializers import *
-from api.models import *
+from .models import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -19,8 +19,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 class SathiListCreateView(generics.ListAPIView, generics.CreateAPIView):
     queryset = Sathi.objects.all()
     serializer_class = SathiSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
     
 class SathiUpdateDeleteView(generics.UpdateAPIView, generics.DestroyAPIView):
     queryset = Sathi.objects.all()
