@@ -11,6 +11,7 @@ from api import models
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 # Create your views here.
 
@@ -18,13 +19,13 @@ from rest_framework.permissions import IsAuthenticated
 class SathiListCreateView(generics.ListAPIView, generics.CreateAPIView):
     queryset = Sathi.objects.all()
     serializer_class = SathiSerializer
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     
 class SathiUpdateDeleteView(generics.UpdateAPIView, generics.DestroyAPIView):
     queryset = Sathi.objects.all()
     serializer_class = SathiSerializer
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
 
