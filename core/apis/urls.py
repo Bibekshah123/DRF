@@ -1,19 +1,11 @@
 from django.urls import path
 from .views import *
 
-# from rest_framework.routers import DefaultRouter
-
-# router = DefaultRouter()
-# router.register("", SathiViewSet, basename='sathi')
-# urlpatterns = router.urls
-
-# urlpatterns = [
-#     path('sathi/', SathiLisCreateApiView.as_view(), name='sathi-list'),
-#     path('sathi/<int:pk>/', SathiDetailApiView.as_view(), name='sathi-detail'),
-# ]
-
 urlpatterns = [
-    path('sathi/', SathiListCreateView.as_view()),
-    path('sathi/updatedestory/<int:pk>/', SathiUpdateDeleteView.as_view())
+    path('register/', UserRegistrationView.as_view()),
+    path('users/', UserApiView.as_view()),
+    
+    path('sathi/', SathiListApiView.as_view()),
+    path('sathiRUD/<int:pk>/', SathiRUDApiView.as_view()),
 ]
 
